@@ -38,4 +38,19 @@ class AB{
         $sql = "DELETE FROM $tabla WHERE $oszlop IN (SELECT $oszlop FROM $tablaHivatkozott WHERE $hivatkozottOszlop = '$mit')";
         $this->kapcsolat->query($sql);
     }
+
+    public function beszur($ujTabla, $mezok, $ertekek){
+        if (count($mezok) !== count($ertekek)) {
+            die("Hiba: A mezők és az értékek száma nem egyezik!");
+        }
+
+        // Mezők és értékek megfelelő formázása
+        $mezoLista = implode(", ", $mezok);
+        $ertekLista = implode("', '", array_map([$this->kapcsolat, 'real_escape_string'], $ertekek));
+
+        $sql = "INSERT INTO $ujTabla ($mezoLista) VALUES ('$ertekLista')";
+        $siker = $this->kapcsolat->query($sql);
+
+        return $siker ? "Adatok sikeresen beszúrva!" : "Hiba: " . $this->kapcsolat->error;
+    }
 }
