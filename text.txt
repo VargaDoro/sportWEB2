@@ -1,0 +1,10 @@
+$csapatok = $adatbazis->lekerdez("csapat", "nev, kep");
+
+    // Csapatok megjelenítése
+    echo "<h1>Csapatok</h1>";
+    foreach ($csapatok as $csapat) {
+        echo "<div class='csapat'>";
+        echo "<img src='kepek/{$csapat['kep']}' alt='{$csapat['nev']}'>";
+        echo "<p>{$csapat['nev']}</p>";
+        echo "</div>";
+    }
