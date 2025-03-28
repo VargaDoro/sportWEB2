@@ -16,7 +16,7 @@
             $adatbazis->feltoltes("", "", "", "", "");
         } 
 
-        $adatbazis->torles("csapat","nev","csapatAzon","","");
+        $adatbazis->torles("csapat","nev","tag","csapatAzon","Kutya");
 
         $adatbazis->kapcsolatBezar();
     ?>
