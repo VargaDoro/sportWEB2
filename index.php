@@ -12,10 +12,8 @@
 <body>
 <?php
         $adatbazis = new AB();
-        if ($adatbazis->meret("") == 0){
-            $adatbazis->feltoltes("", "", "", "", "");
-        } 
-
+        //$adatbazis->beszur('Alcsut',2003,'alcsut.png');
+        $adatbazis->modosit();
         $adatbazis->torles("csapat","nev","tag","csapatAzon","Kutya");
 
         $adatbazis->kapcsolatBezar();

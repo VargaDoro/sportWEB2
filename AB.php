@@ -15,25 +15,6 @@ class AB{
         $this->kapcsolat->close();
     }
 
-    public function meret($tabla){
-        $sql = "SELECT * FROM $tabla";
-        $matrix = $this->kapcsolat->query($sql);
-        return $matrix->num_rows;
-    }
-
-    public function feltoltes($ujTabla, $mezo1, $mezo2, $tabla1, $tabla2){
-        $mezo1Meret = $this->meret($tabla1);
-        $mezo2Meret = $this->meret($tabla2);
-
-        for ($i=1; $i <= $mezo1Meret; $i++) { 
-            for ($j=1; $j <= $mezo2Meret; $j++) { 
-                $sql = "INSERT INTO $ujTabla($mezo1, $mezo2) VALUES ('$i','$j')";
-                $siker = $this->kapcsolat->query($sql);
-                echo $siker?"siker":"sikertelen";
-            }
-        }
-    }
-
     public function torles($tabla, $oszlop, $tablaHivatkozott, $hivatkozottOszlop, $mit){
         $sql = "DELETE FROM $tabla WHERE $oszlop IN (SELECT $oszlop FROM $tablaHivatkozott WHERE $hivatkozottOszlop = '$mit')";
         $this->kapcsolat->query($sql);
@@ -52,5 +33,9 @@ class AB{
         $siker = $this->kapcsolat->query($sql);
 
         return $siker ? "Adatok sikeresen beszúrva!" : "Hiba: " . $this->kapcsolat->error;
+    }
+
+    public function modosit(){
+        $this->kapcsolat->query("UPDATE `csapat` SET `nev`='Császárok' WHERE `nev`='Királyok'");
     }
 }
