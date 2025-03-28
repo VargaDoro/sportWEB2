@@ -38,4 +38,16 @@ class AB{
     public function modosit(){
         $this->kapcsolat->query("UPDATE `csapat` SET `nev`='Császárok' WHERE `nev`='Királyok'");
     }
+
+    public function oszlopLeker($oszlop, $tabla){
+        $sql = "SELECT $oszlop FROM $tabla";
+        $matrix = $this->kapcsolat->query($sql);
+        return $matrix;
+    }
+
+    public function megjelenites($matrix){
+        while ($sor = $matrix->fetch_row()) {
+            echo "<img src='forras/$sor[0]' alt='kép'>";
+        }
+    }
 }
