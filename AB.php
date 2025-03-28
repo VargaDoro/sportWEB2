@@ -39,15 +39,21 @@ class AB{
         $this->kapcsolat->query("UPDATE `csapat` SET `nev`='Császárok' WHERE `nev`='Királyok'");
     }
 
-    public function oszlopLeker($oszlop, $tabla){
-        $sql = "SELECT $oszlop FROM $tabla";
+    public function oszlopLeker($oszlop, $oszlop2, $tabla){
+        $sql = "SELECT $oszlop, $oszlop2 FROM $tabla";
         $matrix = $this->kapcsolat->query($sql);
         return $matrix;
     }
 
     public function megjelenites($matrix){
+        echo"<table border=1>
+                <th>Név</th><th>Kép</th>";
         while ($sor = $matrix->fetch_row()) {
-            echo "<img src='forras/$sor[0]' alt='kép'>";
+            echo "<tr>
+                    <td>$sor[1]</td>
+                    <td><img src='forras/$sor[0]' alt='szín képei'></td>
+                </tr>";
         }
+        echo "</table>";
     }
 }

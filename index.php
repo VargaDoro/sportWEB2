@@ -15,8 +15,8 @@
         //$adatbazis->beszur('Alcsut',2003,'alcsut.png');
         $adatbazis->modosit();
         $adatbazis->torles("csapat","nev","tag","csapatAzon","Kutya");
-        $adatbazis->oszlopLeker("kep","csapat");
-
+        $matrix = $adatbazis->oszlopLeker("nev","kep","csapat");
+        $adatbazis->megjelenites($matrix);
         $adatbazis->kapcsolatBezar();
     ?>
 </body>
