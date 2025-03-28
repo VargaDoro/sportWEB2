@@ -33,4 +33,9 @@ class AB{
             }
         }
     }
+
+    public function torles($tabla, $oszlop, $tablaHivatkozott, $hivatkozottOszlop, $mit){
+        $sql = "DELETE FROM $tabla WHERE $oszlop IN (SELECT $oszlop FROM $tablaHivatkozott WHERE $hivatkozottOszlop = '$mit')";
+        $this->kapcsolat->query($sql);
+    }
 }

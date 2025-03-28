@@ -12,9 +12,12 @@
 <body>
 <?php
         $adatbazis = new AB();
-        if ($adatbazis->meret("kartya") == 0){
-            $adatbazis->feltoltes("kartya", "szinAzon", "formaAzon", "szin", "forma");
+        if ($adatbazis->meret("") == 0){
+            $adatbazis->feltoltes("", "", "", "", "");
         } 
+
+        $adatbazis->torles("csapat","nev","csapatAzon","","");
+
         $adatbazis->kapcsolatBezar();
     ?>
 </body>
