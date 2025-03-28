@@ -15,8 +15,8 @@ class AB{
         $this->kapcsolat->close();
     }
 
-    public function torles($tabla, $oszlop, $tablaHivatkozott, $hivatkozottOszlop, $mit){
-        $sql = "DELETE FROM $tabla WHERE $oszlop IN (SELECT $oszlop FROM $tablaHivatkozott WHERE $hivatkozottOszlop = '$mit')";
+    public function torles($tabla, $oszlop, $ertek){
+        $sql = "DELETE FROM $tabla WHERE $tabla WHERE $oszlop = '$ertek')";
         $this->kapcsolat->query($sql);
     }
 
@@ -46,14 +46,12 @@ class AB{
     }
 
     public function megjelenites($matrix){
-        echo"<table border=1>
-                <th>Név</th><th>Kép</th>";
+        echo"<h1>Csapatok</h1>";
         while ($sor = $matrix->fetch_row()) {
-            echo "<tr>
-                    <td>$sor[1]</td>
-                    <td><img src='forras/$sor[0]' alt='szín képei'></td>
-                </tr>";
+            echo "<div class='csapat'>";
+            echo "<img src='kepek/{$sor[1]}' alt='{$sor[0]}'>";
+            echo "<p>{$sor[0]}</p>";
+            echo "</div>";
         }
-        echo "</table>";
     }
 }
